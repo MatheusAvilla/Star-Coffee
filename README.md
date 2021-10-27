@@ -42,18 +42,28 @@ O diagrama acima mostra a estrutura de entidades e relacionamentos do sistema. F
 
 ## __Diagrama de Classes__
 
+<img src="images/dc.jpeg">
+
+O diagrama acima mostra o planejamento da programação orientada a objetos na linguagem feito para se adequar ao sistema.
+
 ## __Telas do Sistema__
 
 ### **Tela Carregamento**  
 
 <img src="images/splash.png">
 
+Esta é a tela de carregamento do sistema, possui uma barra de progresso e um ícone característico da empresa.
+
 ### **Tela de Login**
 
 <img src="images/login.png" height="400px">
 
+A tela de login possui dois campos, um para preencher o usuário e outro para preencher a senha. Possui também um dropbox para selecionar se o login será feito por um funcionário ou cliente.
+
 ### **Tela do Menu**
 
 <img src="images/menu.png">
+
+A tela de menu possui um botão para acessar a tela de cadastro de produtos / clientes / funcinários, um botão para obter ajuda dos desenvolvedores e um botão para acessar a tela de produtos / vendas.
 
 
