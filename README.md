@@ -66,4 +66,12 @@ A tela de login possui dois campos, um para preencher o usuário e outro para pr
 
 A tela de menu possui um botão para acessar a tela de cadastro de produtos / clientes / funcinários, um botão para obter ajuda dos desenvolvedores e um botão para acessar a tela de produtos / vendas.
 
+Equipe técnica AJAKS  
+
+Matheus Avilla Vial  
+Higor Valença  
+Henrique Martins Santana  
+Alex Scura  
+Guilherme Camargo Pires  
+
 
