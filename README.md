@@ -50,7 +50,7 @@ O diagrama acima mostra o planejamento da programação orientada a objetos na l
 
 ### **Tela Carregamento**  
 
-<img src="images/splash.png">
+<img src="images/splash.png" height="400px">
 
 Esta é a tela de carregamento do sistema, possui uma barra de progresso e um ícone característico da empresa.
 
