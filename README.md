@@ -68,6 +68,8 @@ A tela de menu possui um botão para acessar a tela de cadastro de produtos / cl
 
 Equipe técnica AJAKS  
 
+<img src="images/Logo-ajaks.png">
+
 Matheus Avilla Vial  
 Higor Valença  
 Henrique Martins Santana  
