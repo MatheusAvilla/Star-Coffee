@@ -40,5 +40,20 @@ O MySQL Workbench é uma ferramenta visual de design de banco de dados que integ
 
 O diagrama acima mostra a estrutura de entidades e relacionamentos do sistema. Foi criado com o auxílio da ferramenta <a href="https://creately.com/">creately</a>, que permite a criação de diagramas de entidades e relacionamentos.
 
+## __Diagrama de Classes__
+
 ## __Telas do Sistema__
+
+### **Tela Carregamento**  
+
+<img src="images/splash.png">
+
+### **Tela de Login**
+
+<img src="images/login.png" height="400px">
+
+### **Tela do Menu**
+
+<img src="images/menu.png">
+
 

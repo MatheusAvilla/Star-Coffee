@@ -6,7 +6,6 @@
 package Star_Coffee;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import javax.swing.JOptionPane;
@@ -28,7 +27,7 @@ public class UI_Login extends javax.swing.JFrame {
         initComponents();
     }
     
-    UI_Menu_Func menu = new UI_Menu_Func();
+    TelaPrincipal menu = new TelaPrincipal();
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -206,24 +205,15 @@ public class UI_Login extends javax.swing.JFrame {
     }//GEN-LAST:event_txtUsuarioActionPerformed
 
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
-        try {
-            String query = "SELECT * FROM usuario WHERE email=? AND senha=? AND tipo_usuario=?";
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/Star_Coffee", "root", "");
-            pst = con.prepareStatement(query);
-            pst.setString(1, txtUsuario.getText());
-            pst.setString(2, txtSenha.getText());
-            pst.setString(3, String.valueOf(cmbType.getSelectedItem()));
-            rs = pst.executeQuery();
-            if(rs.next()) {
-                JOptionPane.showMessageDialog(this, "Usuário e Senha Corretos! Você está entrando como " + rs.getString("tipo_usuario"));
-                if(cmbType.getSelectedItem() == "0") {
-                    UI_Menu_Func f = new UI_Menu_Func();
-                    f.setVisible(true);
-                    this.setVisible(false);
-                }
-            }
-        }catch(Exception ex) {
-            JOptionPane.showMessageDialog(this, ex.getMessage());
+
+        TelaPrincipal tp = new TelaPrincipal();
+        if(txtUsuario.getText().equals("admin") && "12345".equals(new String(txtSenha.getPassword()))) {
+            JOptionPane.showMessageDialog(this, "Login bem sucedido.");
+            this.dispose();
+            tp.setVisible(true);
+        }
+        else {
+            JOptionPane.showMessageDialog(this, "Login ou senha inválidos.");
         }
     }//GEN-LAST:event_btnEntrarActionPerformed
 
