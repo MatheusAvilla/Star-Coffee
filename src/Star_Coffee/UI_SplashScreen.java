@@ -50,10 +50,10 @@ public class UI_SplashScreen extends javax.swing.JFrame {
         pBar.setStringPainted(true);
         pBar.setVerifyInputWhenFocusTarget(false);
 
-        jPanel1.setBackground(new java.awt.Color(255, 102, 153));
+        jPanel1.setBackground(new java.awt.Color(255, 153, 153));
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        jLabel2.setBackground(new java.awt.Color(255, 153, 153));
+        jLabel2.setBackground(new java.awt.Color(255, 222, 237));
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/bakery.png"))); // NOI18N
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/star-coffee.png"))); // NOI18N

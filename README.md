@@ -34,17 +34,17 @@ O NetBeans IDE é um ambiente de desenvolvimento integrado gratuito e de código
 
 O MySQL Workbench é uma ferramenta visual de design de banco de dados que integra desenvolvimento, administração, design, criação e manutenção de SQL em um único ambiente de desenvolvimento integrado para o sistema de banco de dados MySQL. Neste projeto, o SGBD foi utilizado para visualização dos dados e realização de consultas.
 
-## __Digrama de Entidades e Relacionamentos (DER)__
-
-<img src="images/der.jpeg">
-
-O diagrama acima mostra a estrutura de entidades e relacionamentos do sistema. Foi criado com o auxílio da ferramenta <a href="https://creately.com/">creately</a>, que permite a criação de diagramas de entidades e relacionamentos.
-
 ## __Diagrama de Classes__
 
 <img src="images/dc.jpeg">
 
 O diagrama acima mostra o planejamento da programação orientada a objetos na linguagem feito para se adequar ao sistema.
+
+## __Digrama de Entidades e Relacionamentos (DER)__
+
+<img src="images/der.jpeg">
+
+O diagrama acima mostra a estrutura de entidades e relacionamentos do sistema. Foi criado com o auxílio da ferramenta <a href="https://creately.com/">creately</a>, que permite a criação de diagramas de entidades e relacionamentos.
 
 ## __Telas do Sistema__
 
