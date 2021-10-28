@@ -466,9 +466,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("tab5", jPanel5);
 
-        jPanel7.setBackground(new java.awt.Color(74, 247, 154));
+        jPanel7.setBackground(new java.awt.Color(0, 204, 204));
 
-        jPanel9.setBackground(new java.awt.Color(74, 247, 154));
+        jPanel9.setBackground(new java.awt.Color(0, 204, 204));
 
         jLabel17.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel17.setText("Cadastro ");
