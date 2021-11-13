@@ -122,6 +122,64 @@ public class TelaPrincipal extends javax.swing.JFrame {
         }               
     }
     
+    public void atualizarCliente(Cliente novoCliente){
+
+         this.conectar.conectaBanco();
+
+         String consultaID = this.consultaID.getText();
+
+         try {
+            this.conectar.updateSQL(
+                "UPDATE Clientes SET "
+                    + "cpf = '" + consultaCPF.getText() + "',"
+                    + "tipoUsuario = '" + consultaUsuario.getText() + "',"
+                    + "nome = '" + consultaNome.getText() + "',"
+                    + "dataNasc = '" + consultaDataNasc.getText() + "',"
+                    + "sexo = '" + consultaSexo.getSelectedItem() + "',"
+                    + "endereco = '" + consultaEndereco.getText() + "',"
+                    + "cidade = '" + consultaCidade.getText() + "',"
+                    + "estado = '" + consultaEstado.getSelectedItem() + "'"
+                + " WHERE "
+                    + "id = '" + consultaID + "'"
+                + ";"
+            );
+
+
+     }catch(Exception e){
+            System.out.println("Erro ao atualizar cliente " +  e.getMessage());
+            JOptionPane.showMessageDialog(null, "Erro ao atualizar cliente");
+     }finally{
+            this.conectar.fechaBanco();
+            novoCliente.limpaCliente();
+            limparCamposCadastroCliente();
+            JOptionPane.showMessageDialog(null, "Cliente atualizado com sucesso");
+        }
+     }
+    
+     private void deletarProduto(Produto novoProduto){
+        this.conectar.conectaBanco();
+        
+        String consultaID = this.txtIdProd.getText(); 
+        
+        try {            
+            this.conectar.updateSQL(
+                "DELETE FROM produtos "
+                + " WHERE "
+                    + "produtos.id = '" + consultaID + "'"
+                + ";"            
+            );
+            
+        } catch (Exception e) {
+            System.out.println("Erro ao deletar produto " +  e.getMessage());
+            JOptionPane.showMessageDialog(null, "Erro ao deletar produto");
+        }finally{
+            this.conectar.fechaBanco();
+            limparCamposCadastroProduto();
+            JOptionPane.showMessageDialog(null, "Produto deletado com sucesso");            
+        }     
+        
+    }
+    
     private void cadastraProduto(Produto novoProduto) {
         this.conectar.conectaBanco();
         
@@ -216,6 +274,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         consultaPreco.setText("");
     }
     
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -289,7 +348,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         consultaDesc = new javax.swing.JTextArea();
         btnConsultarProd = new javax.swing.JButton();
         btnAtualizarProd = new javax.swing.JButton();
-        btnAtualizarProd1 = new javax.swing.JButton();
+        btnDeletarProd = new javax.swing.JButton();
         jTabbedPane3 = new javax.swing.JTabbedPane();
         jPanel3 = new javax.swing.JPanel();
         jPanel11 = new javax.swing.JPanel();
@@ -324,7 +383,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jLabel39 = new javax.swing.JLabel();
         jLabel40 = new javax.swing.JLabel();
         consultaNome = new javax.swing.JTextField();
-        consultaCPF = new javax.swing.JFormattedTextField();
         jLabel2 = new javax.swing.JLabel();
         consultaID = new javax.swing.JTextField();
         jLabel53 = new javax.swing.JLabel();
@@ -344,6 +402,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         btnAtualizar = new javax.swing.JButton();
         consultaUsuario = new javax.swing.JTextField();
         jLabel58 = new javax.swing.JLabel();
+        consultaCPF = new javax.swing.JFormattedTextField();
 
         jLabel5.setText("Cappucino 190ML...........................................09,50$");
 
@@ -898,9 +957,19 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         btnAtualizarProd.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         btnAtualizarProd.setText("ATUALIZAR");
+        btnAtualizarProd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAtualizarProdActionPerformed(evt);
+            }
+        });
 
-        btnAtualizarProd1.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        btnAtualizarProd1.setText("DELETAR");
+        btnDeletarProd.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        btnDeletarProd.setText("DELETAR");
+        btnDeletarProd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeletarProdActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
         jPanel10.setLayout(jPanel10Layout);
@@ -928,7 +997,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
                             .addComponent(btnLimpaConsulta, javax.swing.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE)
                             .addComponent(btnConsultarProd, javax.swing.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE)
                             .addComponent(btnAtualizarProd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnAtualizarProd1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(btnDeletarProd, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(69, 69, 69))))
         );
         jPanel10Layout.setVerticalGroup(
@@ -941,7 +1010,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnConsultarProd, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnAtualizarProd1, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnDeletarProd, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(14, 14, 14))
                     .addGroup(jPanel10Layout.createSequentialGroup()
                         .addGap(40, 40, 40)
@@ -1176,12 +1245,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
 
-        try {
-            consultaCPF.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-
         jLabel2.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         jLabel2.setText("Insira o ID do cliente para consultar:");
 
@@ -1236,8 +1299,19 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
 
         btnAtualizar.setText("ATUALIZAR");
+        btnAtualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAtualizarActionPerformed(evt);
+            }
+        });
 
         jLabel58.setText("Tipo de Usuário");
+
+        try {
+            consultaCPF.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
 
         javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
         jPanel13.setLayout(jPanel13Layout);
@@ -1261,18 +1335,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
                             .addComponent(jLabel38)
                             .addGroup(jPanel13Layout.createSequentialGroup()
                                 .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel13Layout.createSequentialGroup()
-                                        .addComponent(consultaCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(58, 58, 58))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(jPanel13Layout.createSequentialGroup()
-                                            .addComponent(jLabel55)
-                                            .addGap(132, 132, 132))
-                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel13Layout.createSequentialGroup()
-                                            .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(jLabel54)
-                                                .addComponent(consultaSexo, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGap(58, 58, 58))))
+                                    .addComponent(jLabel55)
+                                    .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(jLabel54, javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(consultaSexo, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(consultaCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(31, 31, 31)
                                 .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(consultaUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel58)
@@ -1315,8 +1383,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
                             .addComponent(jLabel53))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(consultaCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(consultaDataNasc, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(consultaDataNasc, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(consultaCPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(39, 39, 39)
                         .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel55)
@@ -1360,7 +1428,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jPanel12Layout.setVerticalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel12Layout.createSequentialGroup()
-                .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, 614, Short.MAX_VALUE)
+                .addComponent(jPanel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -1461,6 +1529,18 @@ public class TelaPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnDeletarClienteActionPerformed
 
+    private void btnDeletarProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeletarProdActionPerformed
+        deletarProduto(novoProduto);
+    }//GEN-LAST:event_btnDeletarProdActionPerformed
+
+    private void btnAtualizarProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtualizarProdActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAtualizarProdActionPerformed
+
+    private void btnAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtualizarActionPerformed
+        atualizarCliente(novoCliente);
+    }//GEN-LAST:event_btnAtualizarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1501,7 +1581,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JPasswordField CriaSenha;
     private javax.swing.JButton btnAtualizar;
     private javax.swing.JButton btnAtualizarProd;
-    private javax.swing.JButton btnAtualizarProd1;
     private javax.swing.JButton btnCadProd;
     private javax.swing.JButton btnCadastrar;
     private javax.swing.JButton btnCadastrarProd;
@@ -1509,6 +1588,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton btnConsultaLimpar;
     private javax.swing.JButton btnConsultarProd;
     private javax.swing.JButton btnDeletarCliente;
+    private javax.swing.JButton btnDeletarProd;
     private javax.swing.JButton btnLimpaConsulta;
     private javax.swing.JButton btnLimpar;
     private javax.swing.JButton btnLimparProd;
@@ -1622,4 +1702,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> txtSexo;
     private javax.swing.JComboBox<String> txtTipoUsuario;
     // End of variables declaration//GEN-END:variables
+
+    private class consultaCpf {
+
+        public consultaCpf() {
+        }
+    }
 }

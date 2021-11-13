@@ -959,7 +959,7 @@
                                       <Component id="btnLimpaConsulta" pref="148" max="32767" attributes="0"/>
                                       <Component id="btnConsultarProd" pref="148" max="32767" attributes="0"/>
                                       <Component id="btnAtualizarProd" max="32767" attributes="0"/>
-                                      <Component id="btnAtualizarProd1" alignment="1" max="32767" attributes="0"/>
+                                      <Component id="btnDeletarProd" alignment="1" max="32767" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="-2" pref="69" max="-2" attributes="0"/>
                               </Group>
@@ -977,7 +977,7 @@
                                   <EmptySpace type="unrelated" max="32767" attributes="0"/>
                                   <Component id="btnConsultarProd" min="-2" pref="81" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="btnAtualizarProd1" min="-2" pref="78" max="-2" attributes="0"/>
+                                  <Component id="btnDeletarProd" min="-2" pref="78" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
@@ -1087,14 +1087,20 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="ATUALIZAR"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAtualizarProdActionPerformed"/>
+                  </Events>
                 </Component>
-                <Component class="javax.swing.JButton" name="btnAtualizarProd1">
+                <Component class="javax.swing.JButton" name="btnDeletarProd">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="SansSerif" size="14" style="1"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="DELETAR"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDeletarProdActionPerformed"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
@@ -1490,7 +1496,7 @@
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <Component id="jPanel13" pref="614" max="32767" attributes="0"/>
+                          <Component id="jPanel13" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -1529,24 +1535,14 @@
                                           <Component id="jLabel38" alignment="0" min="-2" max="-2" attributes="0"/>
                                           <Group type="102" alignment="0" attributes="0">
                                               <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Group type="102" alignment="0" attributes="0">
-                                                      <Component id="consultaCPF" min="-2" pref="103" max="-2" attributes="0"/>
-                                                      <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
+                                                  <Component id="jLabel55" min="-2" max="-2" attributes="0"/>
+                                                  <Group type="103" groupAlignment="1" attributes="0">
+                                                      <Component id="jLabel54" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                      <Component id="consultaSexo" alignment="1" min="-2" pref="103" max="-2" attributes="0"/>
                                                   </Group>
-                                                  <Group type="103" alignment="1" groupAlignment="0" attributes="0">
-                                                      <Group type="102" alignment="0" attributes="0">
-                                                          <Component id="jLabel55" min="-2" max="-2" attributes="0"/>
-                                                          <EmptySpace min="-2" pref="132" max="-2" attributes="0"/>
-                                                      </Group>
-                                                      <Group type="102" alignment="1" attributes="0">
-                                                          <Group type="103" groupAlignment="0" attributes="0">
-                                                              <Component id="jLabel54" alignment="0" min="-2" max="-2" attributes="0"/>
-                                                              <Component id="consultaSexo" alignment="0" min="-2" pref="103" max="-2" attributes="0"/>
-                                                          </Group>
-                                                          <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
-                                                      </Group>
-                                                  </Group>
+                                                  <Component id="consultaCPF" min="-2" pref="130" max="-2" attributes="0"/>
                                               </Group>
+                                              <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
                                               <Group type="103" groupAlignment="0" attributes="0">
                                                   <Component id="consultaUsuario" min="-2" pref="116" max="-2" attributes="0"/>
                                                   <Component id="jLabel58" min="-2" max="-2" attributes="0"/>
@@ -1599,8 +1595,8 @@
                                       </Group>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="consultaCPF" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                                           <Component id="consultaDataNasc" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
+                                          <Component id="consultaCPF" alignment="3" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="3" attributes="0">
@@ -1675,13 +1671,6 @@
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="consultaNomeActionPerformed"/>
                       </Events>
-                    </Component>
-                    <Component class="javax.swing.JFormattedTextField" name="consultaCPF">
-                      <Properties>
-                        <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
-                          <Format format="###.###.###-##" subtype="-1" type="5"/>
-                        </Property>
-                      </Properties>
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel2">
                       <Properties>
@@ -1826,12 +1815,22 @@
                       <Properties>
                         <Property name="text" type="java.lang.String" value="ATUALIZAR"/>
                       </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAtualizarActionPerformed"/>
+                      </Events>
                     </Component>
                     <Component class="javax.swing.JTextField" name="consultaUsuario">
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel58">
                       <Properties>
                         <Property name="text" type="java.lang.String" value="Tipo de Usu&#xe1;rio"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JFormattedTextField" name="consultaCPF">
+                      <Properties>
+                        <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
+                          <Format format="###.###.###-##" subtype="-1" type="5"/>
+                        </Property>
                       </Properties>
                     </Component>
                   </SubComponents>

@@ -32,8 +32,8 @@ public class Produto {
     public void setPreco(float preco) {
         this.preco = preco;
     }
-    
-    public void limpaCliente() {
+
+    public void limpaProduto() {
         nome_produto = "";
         descricao = "";
         preco = 0;
