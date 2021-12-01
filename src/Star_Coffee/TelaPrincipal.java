@@ -249,7 +249,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
                     + "preco"
                  + " FROM"
                      + " produtos"
-                 + " WHERE"
+                 + " WHERE exists"
                      + " produtos.id = '" + consultaProduto + "'"
                 + ";"    
             );
@@ -275,6 +275,33 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
             this.conectar.fechaBanco();   
         }    
+    }
+    
+    public void atualizaProduto(Produto novoProduto){
+        this.conectar.conectaBanco();
+        
+        String consultaProduto = this.txtIdProd.getText();
+        
+        try {
+            this.conectar.updateSQL(
+                "UPDATE produtos SET "                    
+                    + "prod_nome = '" + consultaProd.getText() + "',"
+                    + "descricao = '" + consultaDesc.getText() + "',"
+                    + "preco = '" + consultaPreco.getText() + "'"                   
+                + " WHERE "
+                + " id = '" + consultaProduto + "'"
+                + ";"
+            );
+        }catch(Exception e){
+            System.out.println("Erro ao atualizar Produto " +  e.getMessage());
+            JOptionPane.showMessageDialog(null, "Erro ao atualizar Produto");
+        }finally{
+             consultaProd.setText(novoProduto.getNome_produto());
+            consultaDesc.setText(novoProduto.getDescricao());
+            consultaPreco.setText(Float.toString(novoProduto.getPreco()));
+           
+            JOptionPane.showMessageDialog(null, "Produto atualizado com sucesso");
+        }
     }
     
     private void limparCamposCadastroCliente(){
@@ -1558,7 +1585,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnDeletarProdActionPerformed
 
     private void btnAtualizarProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtualizarProdActionPerformed
-        // TODO add your handling code here:
+        atualizaProduto(novoProduto);
     }//GEN-LAST:event_btnAtualizarProdActionPerformed
 
     private void btnAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtualizarActionPerformed
