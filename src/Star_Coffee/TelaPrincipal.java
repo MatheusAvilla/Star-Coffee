@@ -177,7 +177,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
             limparCamposCadastroProduto();
             JOptionPane.showMessageDialog(null, "Produto deletado com sucesso");            
         }     
-        
+       
     }
     
     private void cadastraProduto(Produto novoProduto) {
@@ -211,6 +211,30 @@ public class TelaPrincipal extends javax.swing.JFrame {
         }                
     }
     
+    private void deletarCliente(Cliente novoCliente){
+        this.conectar.conectaBanco();
+        
+        String consultaID = this.consultaID.getText(); 
+        
+        try {            
+            this.conectar.updateSQL(
+                "DELETE FROM clientes "
+                + " WHERE "
+                    + "clientes.id = '" + consultaID + "'"
+                + ";"            
+            );
+            
+        } catch (Exception e) {
+            System.out.println("Erro ao deletar cliente " +  e.getMessage());
+            JOptionPane.showMessageDialog(null, "Erro ao deletar cliente");
+        }finally{
+            this.conectar.fechaBanco();
+            limparCamposCadastroCliente();
+            JOptionPane.showMessageDialog(null, "Cliente deletado com sucesso");            
+        }     
+        
+    }
+    
     private void buscaProduto(Produto novoProduto) {
         
         this.conectar.conectaBanco();
@@ -225,7 +249,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
                     + "preco"
                  + " FROM"
                      + " produtos"
-                 + " WHERE"
+                 + " WHERE exists"
                      + " produtos.id = '" + consultaProduto + "'"
                 + ";"    
             );
@@ -251,6 +275,33 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
             this.conectar.fechaBanco();   
         }    
+    }
+    
+    public void atualizaProduto(Produto novoProduto){
+        this.conectar.conectaBanco();
+        
+        String consultaProduto = this.txtIdProd.getText();
+        
+        try {
+            this.conectar.updateSQL(
+                "UPDATE produtos SET "                    
+                    + "prod_nome = '" + consultaProd.getText() + "',"
+                    + "descricao = '" + consultaDesc.getText() + "',"
+                    + "preco = '" + consultaPreco.getText() + "'"                   
+                + " WHERE "
+                + " id = '" + consultaProduto + "'"
+                + ";"
+            );
+        }catch(Exception e){
+            System.out.println("Erro ao atualizar Produto " +  e.getMessage());
+            JOptionPane.showMessageDialog(null, "Erro ao atualizar Produto");
+        }finally{
+             consultaProd.setText(novoProduto.getNome_produto());
+            consultaDesc.setText(novoProduto.getDescricao());
+            consultaPreco.setText(Float.toString(novoProduto.getPreco()));
+           
+            JOptionPane.showMessageDialog(null, "Produto atualizado com sucesso");
+        }
     }
     
     private void limparCamposCadastroCliente(){
@@ -1531,7 +1582,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnConsultaLimparActionPerformed
 
     private void btnDeletarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeletarClienteActionPerformed
-        
+        deletarCliente(novoCliente);
     }//GEN-LAST:event_btnDeletarClienteActionPerformed
 
     private void btnDeletarProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeletarProdActionPerformed
@@ -1539,7 +1590,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnDeletarProdActionPerformed
 
     private void btnAtualizarProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtualizarProdActionPerformed
-        // TODO add your handling code here:
+        atualizaProduto(novoProduto);
     }//GEN-LAST:event_btnAtualizarProdActionPerformed
 
     private void btnAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtualizarActionPerformed
