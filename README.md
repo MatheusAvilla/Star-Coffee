@@ -40,7 +40,7 @@ O MySQL Workbench é uma ferramenta visual de design de banco de dados que integ
 
 O diagrama acima mostra o planejamento da programação orientada a objetos na linguagem feito para se adequar ao sistema.
 
-## __Digrama de Entidades e Relacionamentos (DER)__
+## __Diagrama de Entidades e Relacionamentos (DER)__
 
 <img src="images/der.jpeg">
 
